@@ -127,9 +127,9 @@ zhiyujiaoyu/
     └── .env.example
 ```
 
-> **⚠️ 仓库现状**：当前这一版推送只包含 `langchain_service`（Python AI 服务），
-> `A7SpringBoot` 与 `A7vue3Project` 两个目录是**空的占位目录，代码尚未推上来**。
-> 复现后端与前端请先向作者获取对应源码。
+> **配置说明**：`application.yaml` 中的 MySQL 密码、JWT 密钥、MinIO AccessKey/SecretKey
+> 已改为环境变量占位（`${MYSQL_PASSWORD}`、`${JWT_SECRET}`、`${MINIO_ACCESS_KEY}`、`${MINIO_SECRET_KEY}`），
+> 本地开发可直接用默认值，部署时请通过环境变量覆盖。
 
 ---
 
