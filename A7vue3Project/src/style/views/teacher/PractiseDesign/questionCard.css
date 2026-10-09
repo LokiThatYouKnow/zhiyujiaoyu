@@ -1,0 +1,132 @@
+.programming-card {
+    min-width: 80vw;
+    min-height: 65vh;
+    
+    margin: 10px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  
+  .card-header {
+    background: #4a6cf7;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .question-number {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .question-number span {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    background: white;
+    color: #4a6cf7;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .question-meta {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .question-content {
+    padding: 25px;
+  }
+  
+  .question-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  .question-desc {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .code-input-area {
+    margin: 20px 0;
+    position: relative;
+  }
+  
+  .code-label {
+    position: absolute;
+    top: -12px;
+    left: 15px;
+    background: #fff;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #4a6cf7;
+    font-weight: 500;
+  }
+  
+  .code-input {
+    width: 100%;
+    min-height: 350px;
+    padding: 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    background: #f8f9fa;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  
+  .code-input:focus {
+    outline: none;
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background: #3a5ce7;
+  }
+  
+  .nav-button i {
+    margin-right: 8px;
+  }
+  

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengzhidui.a7springboot.mapper.StudentMapper">
+    <select id="checkUsernameExists" parameterType="java.lang.String" resultType="java.lang.Boolean">
+        SELECT EXISTS (
+            SELECT username FROM student WHERE username = #{username}
+            UNION ALL
+            SELECT username FROM teacher WHERE username = #{username}
+            UNION ALL
+            SELECT username FROM admin WHERE username = #{username}
+        ) AS user_exists
+    </select>
+
+    <select id="getCoursesByStudentId" resultType="com.mengzhidui.a7springboot.entity.po.CoursePO"
+            parameterType="java.lang.Long">
+        SELECT c.*
+        FROM student s
+                 JOIN course_detail_record cdr ON s.id = cdr.user_id
+                 JOIN course c ON cdr.course_id = c.course_id
+        WHERE s.id = #{studentId} AND cdr.user_category = 'STUDENT'
+    </select>
+
+</mapper>

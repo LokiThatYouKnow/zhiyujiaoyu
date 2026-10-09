@@ -1,0 +1,87 @@
+/* ===== Modern Teacher Detail Card ===== */
+
+.app-container {
+  min-height: 80vh;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 16px;
+}
+
+.card-wrapper { max-width: 880px; width: 100%; }
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  transition: box-shadow 0.3s ease;
+}
+.card:hover { box-shadow: 0 8px 32px rgba(79, 70, 229, 0.08); }
+
+.card-header {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: white;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.card-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-body { padding: 28px 32px; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 768px) { .info-grid { grid-template-columns: 1fr 1fr; } }
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #F8FAFC;
+  border-radius: 14px;
+  border: 1px solid #F1F5F9;
+  transition: all 0.3s ease;
+}
+.info-item:hover {
+  background: white;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  border-color: rgba(79, 70, 229, 0.12);
+  transform: translateY(-2px);
+}
+
+.info-icon {
+  width: 44px; height: 44px; min-width: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(139,92,246,0.04));
+  display: flex; align-items: center; justify-content: center;
+  color: #4F46E5;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+.info-item:hover .info-icon {
+  color: #4F46E5;
+  background: linear-gradient(135deg, rgba(79,70,229,0.12), rgba(139,92,246,0.06));
+  box-shadow: 0 2px 8px rgba(79,70,229,0.12);
+}
+
+.info-content { display: flex; flex-direction: column; gap: 2px; }
+.info-label { font-size: 11px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-value { font-size: 15px; font-weight: 600; color: #0F172A; }

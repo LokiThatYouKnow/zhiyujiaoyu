@@ -1,1 +1,32 @@
 .env
+
+# ---- 前端 ----
+node_modules/
+dist/
+.vite/
+*.local
+
+# ---- 后端 ----
+target/
+*.class
+*.jar
+logs/
+*.log
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.iml
+
+# ---- Python ----
+__pycache__/
+*.pyc
+.venv/
+.venv-*/
+venv/
+
+# ---- 其他 ----
+spring-boot.log
+gitignore
+.DS_Store
+Thumbs.db

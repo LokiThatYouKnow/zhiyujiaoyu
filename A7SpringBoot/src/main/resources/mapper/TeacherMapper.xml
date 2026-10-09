@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mengzhidui.a7springboot.mapper.TeacherMapper">
+    <select id="checkUsernameExists" parameterType="java.lang.String" resultType="java.lang.Boolean">
+        SELECT EXISTS (
+            SELECT username FROM student WHERE username = #{username}
+            UNION ALL
+            SELECT username FROM teacher WHERE username = #{username}
+            UNION ALL
+            SELECT username FROM admin WHERE username = #{username}
+        ) AS user_exists
+    </select>
+
+    <select id="selectCoursesByTeacherId" resultType="com.mengzhidui.a7springboot.entity.po.CoursePO"
+            parameterType="java.lang.Long">
+        SELECT c.*
+        FROM course_detail_record cdr
+                 JOIN course c ON cdr.course_id = c.course_id
+        WHERE cdr.user_id = #{teacherId}
+          AND cdr.user_category = 'TEACHER'
+    </select>
+
+    <select id="selectMinioObjectRecordByTeacherId"
+            resultType="com.mengzhidui.a7springboot.entity.po.MinioObjectRecordPO"
+            parameterType="java.lang.Long">
+        SELECT mor.*
+        FROM teacher t
+                 JOIN course_detail_record cdr
+                      ON t.id = cdr.user_id
+                          AND cdr.user_category = 'TEACHER'
+                 JOIN course c
+                      ON cdr.course_id = c.course_id
+                 JOIN minio_object_record mor
+                      ON c.course_id = mor.course_id
+        WHERE t.id = #{teacherId}
+    </select>
+
+    <select id="selectStudentsByTeacherId" resultType="com.mengzhidui.a7springboot.entity.po.StudentPO"
+            parameterType="java.lang.Long">
+        SELECT s.*
+        FROM student s
+                 JOIN teacher t ON s.class_name = t.class_name
+        WHERE t.id = #{teacherId}
+    </select>
+
+    <select id="selectEnrolledStudentsByTeacherId" resultType="java.util.HashMap"
+            parameterType="java.lang.Long">
+        SELECT s.id, s.username, s.password, s.name, s.gender, s.age, s.major, s.class_name,
+               s.teacher_binding_code, s.create_time, s.update_time, c.course_name
+        FROM student s
+                 JOIN course_detail_record cdr_student ON s.id = cdr_student.user_id
+            AND cdr_student.user_category = 'STUDENT'
+                 JOIN course_detail_record cdr_teacher ON cdr_student.course_id = cdr_teacher.course_id
+            AND cdr_teacher.user_category = 'TEACHER'
+                 JOIN course c ON cdr_student.course_id = c.course_id
+        WHERE cdr_teacher.user_id = #{teacherId}
+    </select>
+
+    <select id="selectEnrolledStudentsByTeacherIdAndCourse" resultType="java.util.HashMap">
+        SELECT s.id, s.username, s.password, s.name, s.gender, s.age, s.major, s.class_name,
+               s.teacher_binding_code, s.create_time, s.update_time, c.course_name
+        FROM student s
+                 JOIN course_detail_record cdr_student ON s.id = cdr_student.user_id
+            AND cdr_student.user_category = 'STUDENT'
+                 JOIN course_detail_record cdr_teacher ON cdr_student.course_id = cdr_teacher.course_id
+            AND cdr_teacher.user_category = 'TEACHER'
+                 JOIN course c ON cdr_student.course_id = c.course_id
+        WHERE cdr_teacher.user_id = #{teacherId}
+          AND c.course_name = #{courseName}
+    </select>
+
+    <select id="selectPublishedAssignmentsByCourse" resultType="com.mengzhidui.a7springboot.entity.po.HomeworkPublishedPO">
+        SELECT * FROM homework_published
+        WHERE course_name = #{courseName} AND status = 'published'
+        ORDER BY updated_at DESC
+    </select>
+</mapper>
